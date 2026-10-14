@@ -302,7 +302,7 @@ modalities automatically when their key is present:
 | text / Markdown | as-is | |
 | PDF | pypdf — **built in**; `serviette[docling]` upgrades to Docling (layout-aware, tables) | local, free |
 | Office (DOCX, PPTX, XLSX, HTML, EML…) | Unstructured — **built in**; `serviette[docling]` widens coverage (EPUB, legacy formats) | local, free |
-| scanned images (PNG, JPG, TIFF…) | PaddleOCR | local, free |
+| scanned images (PNG, JPG, TIFF…) | PaddleOCR | local, free; install `serviette[ocr]` |
 | audio (MP3, WAV…) | Whisper | when `OPENAI_API_KEY` is set |
 | video (MP4, WebM, MOV…) | TwelveLabs Pegasus — a searchable text description of the video | when `TWELVELABS_API_KEY` is set |
 

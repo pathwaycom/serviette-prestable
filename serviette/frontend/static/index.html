@@ -229,11 +229,6 @@
     kInput.value = k; storeK(k);
   });
   document.getElementById("kReset").addEventListener("click", function () { kInput.value = K_DEFAULT; storeK(K_DEFAULT); });
-  gear.addEventListener("click", function () {
-    const open = settings.hidden;
-    settings.hidden = !open;
-    gear.setAttribute("aria-expanded", String(open));
-  });
   // Documents panel: opened on demand, and it talks to the API only when a
   // search is submitted.
   const docsPanel = document.getElementById("docsPanel");

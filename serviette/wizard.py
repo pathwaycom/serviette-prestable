@@ -17,6 +17,7 @@ the I/O so it can be unit-tested without a terminal.
 
 from __future__ import annotations
 
+import argparse
 import importlib.util
 import os
 import sys
@@ -800,6 +801,10 @@ class Wizard:
 
 
 def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(
+        prog=f"{APP_NAME} wizard", description="Interactively generate a YAML config."
+    )
+    parser.parse_args(argv)
     wizard = Wizard()
     try:
         answers = wizard.run()

@@ -34,6 +34,27 @@ BASE = {
 }
 
 
+def test_wizard_help_does_not_prompt(monkeypatch, capsys):
+    def unexpected_prompt(*args, **kwargs):
+        pytest.fail("--help must not start the interactive wizard")
+
+    monkeypatch.setattr(wizard, "Wizard", unexpected_prompt)
+    with pytest.raises(SystemExit) as exc:
+        wizard.main(["--help"])
+    assert exc.value.code == 0
+    assert "serviette wizard" in capsys.readouterr().out
+
+
+def test_wizard_rejects_unknown_arguments(monkeypatch):
+    def unexpected_prompt(*args, **kwargs):
+        pytest.fail("invalid arguments must not start the interactive wizard")
+
+    monkeypatch.setattr(wizard, "Wizard", unexpected_prompt)
+    with pytest.raises(SystemExit) as exc:
+        wizard.main(["--typo"])
+    assert exc.value.code == 2
+
+
 def _validate(answers: dict) -> ServietteConfig:
     config_dict = build_config(answers)
     # Round-trips through YAML the way the wizard writes it.
